@@ -27,3 +27,14 @@ app.listen(PORT, () => {
 app.get("/", (req, res) => {
     res.send("Servidor funcionando 🔥");
 });
+app.put('/editar/:index', (req, res) => {
+    const index = req.params.index;
+    const { tacos, cocas, refrescos600, total } = req.body;
+
+    if (pedidos[index]) {
+        pedidos[index] = { tacos, cocas, refrescos600, total };
+        res.json({ mensaje: "Pedido actualizado" });
+    } else {
+        res.status(404).json({ error: "Pedido no encontrado" });
+    }
+});
