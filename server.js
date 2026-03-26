@@ -38,3 +38,13 @@ app.put('/editar/:index', (req, res) => {
         res.status(404).json({ error: "Pedido no encontrado" });
     }
 });
+app.delete('/pedidos/:index', (req, res) => {
+    const index = req.params.index;
+
+    if (pedidos[index]) {
+        pedidos.splice(index, 1);
+        res.json({ mensaje: "Pedido eliminado" });
+    } else {
+        res.status(404).json({ error: "No encontrado" });
+    }
+});
